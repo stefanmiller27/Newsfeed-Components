@@ -86,6 +86,23 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+
+  {
+    title: 'NOT TOO SHABBY',
+    date: 'Jan 1st, 2019',
+    firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
+          hodor. Hodor, hodor. Hodor. Hodor, hodor - hodor... Hodor hodor hodor; hodor HODOR hodor, hodor hodor?! Hodor hodor, hodor.
+          Hodor hodor hodor hodor hodor! Hodor hodor - HODOR hodor, hodor hodor hodor hodor hodor; hodor hodor? `,
+
+    secondParagraph: `Hodor, hodor. Hodor. Hodor, hodor, hodor. Hodor hodor, hodor. Hodor hodor, hodor, hodor hodor. Hodor! Hodor hodor, hodor;
+          hodor hodor hodor? Hodor, hodor. Hodor. Hodor, hodor - HODOR hodor, hodor hodor hodor! Hodor, hodor. Hodor. Hodor, HODOR
+          hodor, hodor hodor, hodor, hodor hodor. Hodor hodor - hodor - hodor... Hodor hodor hodor hodor hodor hodor hodor?! Hodor
+          hodor - hodor hodor hodor. Hodor. Hodor hodor... Hodor hodor hodor hodor hodor? `,
+
+    thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
+          Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
 
@@ -114,3 +131,52 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+const artArt = document.querySelector('.articles');
+
+
+function articleMaker({title, date, firstParagraph, secondParagraph, thirdParagraph}){
+
+const artDiv = document.createElement('div');
+const artTitle = document.createElement('h2');
+const artDate = document.createElement('p');
+const firstPara = document.createElement('p');
+const secondPara = document.createElement('p');
+const thirdPara = document.createElement('p');
+const spanButton = document.createElement('span');
+
+
+
+artDiv.appendChild(artTitle);
+artDiv.appendChild(artDate);
+artDiv.appendChild(firstPara);
+artDiv.appendChild(secondPara);
+artDiv.appendChild(thirdPara);
+artDiv.appendChild(spanButton);
+
+artDiv.classList.add('article');
+artDate.classList.add('date');
+spanButton.classList.add('expandButton');
+
+artTitle.textContent = title;
+artDate.textContent = date;
+firstPara.textContent = firstParagraph;
+secondPara.textContent = secondParagraph;
+thirdPara.textContent = thirdParagraph;
+spanButton.textContent = '+';
+
+spanButton.addEventListener('click', () => {artDiv.classList.toggle('article-open')});
+
+return artDiv;
+
+}
+
+const artElements = data.map(item => {
+return articleMaker(item);
+});
+
+artElements.forEach(e => {
+artArt.appendChild(e);
+})
+
